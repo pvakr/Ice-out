@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICE OUT | FULL DIGITAL ARCHIVE 2026</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+
+        :root {
+            --safety-orange: #FF4F00;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'JetBrains Mono', monospace;
+            overflow-x: hidden;
+            cursor: crosshair;
+            scroll-behavior: smooth;
+        }
+
+        /* CRT Scanline Effect */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 5000;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        .highlight {
+            background-color: var(--safety-orange);
+            color: #000000;
+            padding: 0 4px;
+            font-weight: 700;
+        }
+
+        .tweet-card {
+            border: 1px solid #ffffff;
+            background: #000;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+        }
+
+        .tweet-card:hover {
+            box-shadow: 0 0 50px rgba(255, 79, 0, 0.3);
+            border-color: var(--safety-orange);
+            transform: translateY(-5px);
+        }
+
+        .brutalist-btn {
+            border: 1px solid #ffffff;
+            padding: 12px 24px;
+            text-transform: uppercase;
+            font-size: 12px;
+            font-weight: bold;
+            transition: all 0.2s;
+            background: black;
+            display: inline-block;
+        }
+
+        .brutalist-btn:hover {
+            background: #ffffff;
+            color: #000000;
+            box-shadow: 6px 6px 0px var(--safety-orange);
+        }
+
+        .fragment-line {
+            border-bottom: 1px solid #222;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .fragment-line:hover {
+            background: #0a0a0a;
+            padding-left: 12px;
+            border-color: var(--safety-orange);
+        }
+
+        .ticker {
+            white-space: nowrap;
+            overflow: hidden;
+            display: inline-block;
+            animation: marquee 60s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .grain {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/76/1k_Static_Noise.gif');
+            opacity: 0.06;
+            pointer-events: none;
+            z-index: 4000;
+        }
+
+        .media-full {
+            width: 100%;
+            border: 1px solid #333;
+            display: block;
+            filter: contrast(1.1) brightness(0.9);
+        }
+
+        .address-box {
+            background: #0a0a0a;
+            border: 1px solid #222;
+            padding: 20px;
+            word-break: break-all;
+            font-family: monospace;
+            font-size: 14px;
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--safety-orange);
+            color: black;
+            padding: 10px 20px;
+            font-size: 11px;
+            font-weight: bold;
+            z-index: 6000;
+            display: none;
+        }
+
+        .section-label {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            position: absolute;
+            left: -40px;
+            top: 0;
+            font-size: 10px;
+            opacity: 0.3;
+            letter-spacing: 5px;
+        }
+
+        /* Timeline vertical line */
+        .timeline-line {
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            background: rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="flex flex-col items-center min-h-screen py-20 px-4">
+
+    <div class="grain"></div>
+    <div id="toast" class="toast">LOGGED TO FOG_ARCHIVE_2026.</div>
+
+    <!-- Navigation / Identity -->
+    <header class="w-full max-w-5xl mb-48 space-y-16">
+        <div class="flex flex-wrap justify-between items-center gap-6">
+            <div class="space-y-1">
+                <p class="text-[10px] opacity-40 tracking-[0.5em] uppercase font-bold">Project: //ICE_OUT_MEGA_LOG</p>
+                <p class="text-[10px] opacity-40 uppercase">Timestamp: 02.04.2026_10:38</p>
+            </div>
+            <div class="flex gap-4">
+                <button class="brutalist-btn" onclick="showToast('WALLET CONNECTED')">Connect Wallet</button>
+                <button class="brutalist-btn" onclick="window.open('https://x.com/search?q=%22ICE+OUT%22')">Check Virality</button>
+            </div>
+        </div>
+
+        <div class="space-y-6">
+            <h1 class="text-7xl md:text-[12rem] font-bold tracking-tighter leading-[0.8]">
+                <span class="highlight">ICE OUT</span>
+            </h1>
+            <p class="text-2xl md:text-3xl font-bold opacity-80 max-w-4xl border-l-4 border-orange-600 pl-8">
+                The protest that swallowed the 68th Grammys. <br>
+                From the raids in Minneapolis to the podium in Los Angeles.
+            </p>
+        </div>
+        
+        <div class="address-box flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center gap-4">
+                <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                <span class="opacity-60 text-xs">CA: 63gmgeFvtj8orLaTYcn6JoWtUramGsSuE6RWwjgMpump</span>
+            </div>
+            <button class="brutalist-btn text-[10px]" onclick="copyText('63gmgeFvtj8orLaTYcn6JoWtUramGsSuE6RWwjgMpump')">COPY CA</button>
+        </div>
+    </header>
+
+    <!-- SECTION 1: THE IGNITION (Timeline) -->
+    <section class="w-full max-w-4xl mb-64 relative pl-12 md:pl-20">
+        <div class="timeline-line"></div>
+        <span class="section-label">THE_IGNITION_2025_2026</span>
+        <h2 class="text-[10px] opacity-40 uppercase tracking-[1em] mb-12">Log: Triggering Events</h2>
+        
+        <div class="space-y-24">
+            <div class="relative">
+                <div class="absolute -left-[31px] md:-left-[39px] w-5 h-5 bg-black border-2 border-orange-600 rounded-full"></div>
+                <p class="text-xs font-bold text-orange-600 mb-2">DEC 2025 // MINNEAPOLIS</p>
+                <h3 class="text-2xl font-bold mb-4">THE KILLING OF RENÉE GOOD</h3>
+                <p class="text-sm opacity-60 max-w-2xl leading-relaxed">
+                    Renée Good, an ICU nurse, was killed during high-intensity ICE operations in Minneapolis. Her death became the primary rally cry for the <span class="highlight">ICE OUT</span> movement. Street protests paralyzed major cities for weeks leading up to the awards season.
+                </p>
+            </div>
+
+            <div class="relative">
+                <div class="absolute -left-[31px] md:-left-[39px] w-5 h-5 bg-black border-2 border-white rounded-full"></div>
+                <p class="text-xs font-bold opacity-40 mb-2">JAN 20, 2026 // CASE: 592-LOG</p>
+                <h3 class="text-2xl font-bold mb-4">DETENTION OF LIAM CONEJO RAMOS</h3>
+                <p class="text-sm opacity-60 max-w-2xl leading-relaxed">
+                    The 5-year-old child's detention triggered a coalition of ACLU, MoveOn, and Working Families Power to organize the "Pin Protest" for the Grammys. It was no longer a street movement—it was going to the red carpet.
+                </p>
+            </div>
+
+            <div class="relative">
+                <div class="absolute -left-[31px] md:-left-[39px] w-5 h-5 bg-black border-2 border-white rounded-full"></div>
+                <p class="text-xs font-bold opacity-40 mb-2">JAN 2026 // OFFICER SHOOTINGS</p>
+                <h3 class="text-2xl font-bold mb-4">PRETTI & PORTER JR.</h3>
+                <p class="text-sm opacity-60 max-w-2xl leading-relaxed">
+                    Fatal incidents involving Alex Pretti and Keith Porter Jr. during ICE raids solidified the demand for complete defunding.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: THE GRAMMY PODIUM (Post 1) -->
+    <section class="w-full max-w-5xl mb-64 space-y-16">
+        <h2 class="text-[10px] opacity-40 uppercase tracking-[1em] text-center">Fragment: The Speech</h2>
+        
+        <div class="tweet-card p-8 md:p-12 space-y-8 max-w-4xl mx-auto rotate-[-0.5deg]" onclick="copyText('Bad Bunny: Before I thank God, I’m going to say, ICE out.')">
+            <div class="flex items-center gap-4">
+                <div class="w-12 h-12 bg-purple-900 rounded-full flex items-center justify-center">🍒</div>
+                <div>
+                    <p class="text-lg font-bold">Pop Base <span class="text-blue-400">✓</span></p>
+                    <p class="text-xs opacity-50">@PopBase · Feb 2</p>
+                </div>
+            </div>
+            
+            <p class="text-xl md:text-3xl font-bold leading-tight">
+                Bad Bunny condemns ICE during his #GRAMMYs 🏆 speech for Best Música Urbana Album: <br><br>
+                “Before I say thanks to god, I’m going to say, <span class="highlight">ICE out</span>. We’re not savages, we’re not animals, we are humans and we are Americans.”
+            </p>
+
+            <div class="media-container border-4 border-white">
+                <img src="images/post1.png" alt="Bad Bunny Podium" class="media-full">
+            </div>
+
+            <div class="flex flex-wrap gap-8 text-xs font-bold opacity-50 uppercase border-t border-white/10 pt-6">
+                <span>34K Retweets</span>
+                <span>205K Likes</span>
+                <span>6.5M Views</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: THE COALITION ROLL CALL -->
+    <section class="w-full max-w-5xl mb-64 grid grid-cols-1 md:grid-cols-2 gap-20">
+        <div class="space-y-10">
+            <h2 class="text-[10px] opacity-40 uppercase tracking-[1em]">The Pin Coalition</h2>
+            <p class="text-sm opacity-60 leading-relaxed">
+                Organized by ACLU, MoveOn, and National Domestic Workers Alliance. These black-and-white pins became the visual symbol of the night.
+            </p>
+            <div class="grid grid-cols-2 gap-x-8 gap-y-4">
+                <div class="fragment-line py-2 text-sm" onclick="copyText('Billie Eilish')">❯ BILLIE EILISH</div>
+                <div class="fragment-line py-2 text-sm" onclick="copyText('Justin Bieber')">❯ JUSTIN BIEBER</div>
+                <div class="fragment-line py-2 text-sm" onclick="copyText('Kehlani')">❯ KEHLANI</div>
+                <div class="fragment-line py-2 text-sm" onclick="copyText('Joni Mitchell')">❯ JONI MITCHELL</div>
+                <div class="fragment-line py-2 text-sm" onclick="copyText('Olivia Rodrigo')">❯ OLIVIA RODRIGO</div>
+                <div class="fragment-line py-2 text-sm" onclick="copyText('Jack Antonoff')">❯ JACK ANTONOFF</div>
+                <div class="fragment-line py-2 text-sm" onclick="copyText('Lady Gaga')">❯ LADY GAGA</div>
+                <div class="fragment-line py-2 text-sm" onclick="copyText('Jason Isbell')">❯ JASON ISBELL</div>
+                <div class="fragment-line py-2 text-sm" onclick="copyText('Carole King')">❯ CAROLE KING</div>
+                <div class="fragment-line py-2 text-sm" onclick="copyText('Samara Joy')">❯ SAMARA JOY</div>
+            </div>
+        </div>
+
+        <!-- Post 3: Gaga Pin -->
+        <div class="tweet-card p-6 space-y-6 rotate-[1deg]" onclick="copyText('Lady Gaga wearing an ICE OUT pin at the Grammys')">
+            <div class="flex items-center gap-2">
+                <div class="w-8 h-8 rounded-full bg-gray-800"></div>
+                <span class="text-[10px] font-bold">Gaga Notify ✓</span>
+            </div>
+            <p class="text-sm font-bold">
+                Lady Gaga wearing an <span class="highlight">“ICE OUT”</span> pin at the #GRAMMYs 🏆
+            </p>
+            <img src="images/post3.png" alt="Gaga Pin Detail" class="media-full">
+            <div class="flex justify-between text-[10px] opacity-40 font-bold">
+                <span>1.5K REPOSTS</span>
+                <span>14K LIKES</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 4: THE DIVIDE (Backlash) -->
+    <section class="w-full max-w-5xl mb-64 space-y-24">
+        <h2 class="text-[10px] opacity-40 uppercase tracking-[1em] text-center">The Great Divide // Friction</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+            <!-- Post 2: Viral Refusal -->
+            <div class="tweet-card p-8 space-y-6 rotate-[0.5deg]" onclick="copyText('I’m gonna sit down. We love our law enforcement.')">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center text-[10px]">J</div>
+                    <div>
+                        <p class="text-sm font-bold">Jack</p>
+                        <p class="text-[10px] opacity-50">@jackunheard · Feb 2</p>
+                    </div>
+                </div>
+                <p class="text-lg font-bold leading-tight">
+                    Wow! These two ladies are going viral for refusing to stand with the rest of the audience after an artist shouted <span class="highlight">“ICE OUT”</span> at the Grammys. <br><br>
+                    “I’m gonna sit down. We love our law enforcement.” <br><br>
+                    God bless them.
+                </p>
+                <div class="relative border-4 border-white">
+                    <img src="images/post2.png" alt="Audience Refusal" class="media-full">
+                    <div class="absolute bottom-4 left-4 bg-black/80 px-2 py-1 text-xs font-bold">0:01</div>
+                </div>
+                <div class="flex justify-between text-[11px] opacity-40 font-bold uppercase">
+                    <span>19K REPOSTS</span>
+                    <span>198K LIKES</span>
+                    <span>3.6M VIEWS</span>
+                </div>
+            </div>
+
+            <div class="space-y-12 py-10">
+                <h3 class="text-2xl font-bold uppercase tracking-tighter">The Counter-Reaction</h3>
+                <div class="space-y-6">
+                    <div class="fragment-line py-6" onclick="copyText('Standing ovation shame.')">
+                        <p class="text-xs font-bold opacity-40 mb-1">EMILY AUSTIN // 14M VIEWS</p>
+                        <p class="text-sm">"So shameful. We love our law enforcement."</p>
+                    </div>
+                    <div class="fragment-line py-6" onclick="copyText('Justice Jackson call-out.')">
+                        <p class="text-xs font-bold opacity-40 mb-1">REALSPITFIRE // 1.7M VIEWS</p>
+                        <p class="text-sm">"Justice Jackson needs to be removed from the bench yesterday."</p>
+                    </div>
+                    <div class="fragment-line py-6" onclick="copyText('Country artists discomfort.')">
+                        <p class="text-xs font-bold opacity-40 mb-1">SUNFLOWERROUGE // MEME</p>
+                        <p class="text-sm">Country artists reaction every time someone mentions immigrants...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: EMILY AUSTIN ICED OUT (Post 4) -->
+    <section class="w-full max-w-3xl mb-64 space-y-8 text-center">
+        <h2 class="text-[10px] opacity-40 uppercase tracking-[1em]">The "Iced Out" Twist</h2>
+        
+        <div class="tweet-card p-10 space-y-8 rotate-[-1deg]" onclick="copyText('Nah, I’m ICED OUT 🥶💎')">
+            <div class="flex items-center justify-center gap-4">
+                <div class="w-10 h-10 rounded-full bg-pink-700"></div>
+                <span class="text-lg font-bold">Emily Austin ✓</span>
+            </div>
+            <p class="text-3xl font-bold italic">
+                <span class="highlight">ICE out?</span><br>
+                Nah, I’m ICED OUT 🥶💎
+            </p>
+            <div class="border-8 border-white">
+                <img src="images/post4.png" alt="Emily Austin Diamonds" class="media-full">
+            </div>
+            <div class="flex justify-center gap-12 text-xs font-bold opacity-40">
+                <span>1.5K REPOSTS</span>
+                <span>23K LIKES</span>
+                <span>3.2M VIEWS</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 6: THE FOG TRANSCRIPT (Deep Data) -->
+    <section class="w-full max-w-5xl mb-64 p-16 bg-[#0a0a0a] border border-white/10 space-y-12 relative overflow-hidden">
+        <div class="absolute top-0 right-0 p-4 opacity-10 font-bold text-8xl pointer-events-none">2026</div>
+        <h3 class="text-[10px] opacity-40 uppercase tracking-[0.5em]">The Fog Transcript // Extracted</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+            <div class="space-y-8">
+                <div>
+                    <p class="text-xs font-bold text-orange-600 mb-2">KEHLANI // R&B PERFORMANCE</p>
+                    <p class="text-sm opacity-80 leading-relaxed italic">"Join together as a community of artists and speak out against what’s going on... F*** ICE."</p>
+                </div>
+                <div>
+                    <p class="text-xs font-bold text-orange-600 mb-2">BILLIE EILISH // SONG OF THE YEAR</p>
+                    <p class="text-sm opacity-80 leading-relaxed italic">"No one is illegal on stolen land... Our voices really do matter, and the people matter."</p>
+                </div>
+            </div>
+            <div class="space-y-8">
+                <div>
+                    <p class="text-xs font-bold opacity-40 mb-2">METRIC_LOG // ENGAGEMENT</p>
+                    <p class="text-sm opacity-60 font-mono leading-relaxed">
+                        > Search Spike: +400% (ICE OUT)<br>
+                        > Location: Los Angeles // Minneapolis<br>
+                        > Sentiment: 48.2% Support // 51.8% Backlash<br>
+                        > Status: Unresolved
+                    </p>
+                </div>
+                <div>
+                    <p class="text-xs font-bold opacity-40 mb-2">SUPER_BOWL_NODE</p>
+                    <p class="text-sm opacity-60 leading-relaxed italic">
+                        The divide remains open. Bad Bunny set to headline Super Bowl LXI. The message continues.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="pt-12 flex flex-wrap gap-4">
+            <span class="highlight text-[11px]">#ICEOUT</span>
+            <span class="highlight text-[11px]">#FUERAICE</span>
+            <span class="border border-white/20 px-3 py-1 text-[11px]">#GRAMMYS2026</span>
+            <span class="border border-white/20 px-3 py-1 text-[11px]">#BENITO</span>
+            <span class="border border-white/20 px-3 py-1 text-[11px]">#BILLIE</span>
+            <span class="border border-white/20 px-3 py-1 text-[11px]">#HUMANRIGHTS</span>
+        </div>
+    </section>
+
+    <!-- SECTION 7: VIRAL MEMES & REACTIONS -->
+    <section class="w-full max-w-5xl mb-64 space-y-16">
+        <h2 class="text-[10px] opacity-40 uppercase tracking-[1em] text-center">The Meme Factory // Ice Cold</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="tweet-card p-4 space-y-4 rotate-[-0.5deg]">
+                <p class="text-xs font-bold text-orange-600">HYPEBEAST_DAILY</p>
+                <p class="text-sm font-bold">"Hailey Bieber's old tweet from 2012 is going viral after her Grammys appearance with an 'ICE OUT' pin"</p>
+                <img src="images/m1.png" alt="Hailey Bieber Meme" class="media-full">
+            </div>
+            <div class="tweet-card p-4 space-y-4 rotate-[0.5deg]">
+                <p class="text-xs font-bold text-orange-600">MEME_LORD</p>
+                <p class="text-sm font-bold">"The country artists every time someone mentions ICE OUT..." 🧊🚜</p>
+                <img src="images/m2.png" alt="Country Artist Reaction" class="media-full">
+            </div>
+            <div class="tweet-card p-4 space-y-4 rotate-[0.5deg]">
+                <p class="text-xs font-bold text-orange-600">WHITE_HOUSE_CLASH</p>
+                <p class="text-sm font-bold">"The White House just issued the perfect response... ICED OUT 💎"</p>
+                <img src="images/m3.png" alt="White House Response" class="media-full">
+            </div>
+            <div class="tweet-card p-4 space-y-4 rotate-[-0.5deg]">
+                <p class="text-xs font-bold text-orange-600">VIRAL_BEAT</p>
+                <p class="text-sm font-bold">"Security making sure they're safe while calling for ICE out... peak irony"</p>
+                <img src="images/m4.png" alt="Security Hypocrisy" class="media-full">
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 8: RECEIPTS & ROASTS -->
+    <section class="w-full max-w-5xl mb-64 space-y-16">
+        <h2 class="text-[10px] opacity-40 uppercase tracking-[1em] text-center">Receipts // The Roast Files</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-20">
+            <div class="tweet-card p-8 space-y-6">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-red-900 rounded-full flex items-center justify-center">📜</div>
+                    <div>
+                        <p class="text-lg font-bold">Old Receipts ✓</p>
+                        <p class="text-xs opacity-50">@ receipts · Feb 2</p>
+                    </div>
+                </div>
+                <p class="text-xl font-bold leading-tight">
+                    <span class="highlight">HYPOCRISY ALERT:</span> Old tweets from celebs wearing ICE OUT pins are resurfacing. Some from 2012. The receipts don't lie.
+                </p>
+                <div class="fragment-line py-4" onclick="copyText('Hailey Bieber 2012 tweet resurfaced')">
+                    <p class="text-xs font-bold opacity-40 mb-1">THE ROAST</p>
+                    <p class="text-sm">"Your 2012 self would be disappointed... or proud?"</p>
+                </div>
+            </div>
+
+            <div class="space-y-8">
+                <h3 class="text-2xl font-bold uppercase tracking-tighter">The Dodged Questions</h3>
+                <div class="space-y-6">
+                    <div class="fragment-line py-4" onclick="copyText('Jelly Roll: Dumb redneck not up to comment')">
+                        <p class="text-xs font-bold text-orange-600 mb-1">JELLY ROLL</p>
+                        <p class="text-sm">"I'm a dumb redneck, not up to comment" — immediate meme template</p>
+                    </div>
+                    <div class="fragment-line py-4" onclick="copyText('Country artists dodging ICE OUT questions')">
+                        <p class="text-xs font-bold text-orange-600 mb-1">VARIOUS COUNTRY STARS</p>
+                        <p class="text-sm">Camera cuts and quick exits when asked about the movement</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 9: BACKLASH & CONTROVERSY -->
+    <section class="w-full max-w-5xl mb-64 space-y-16">
+        <h2 class="text-[10px] opacity-40 uppercase tracking-[1em] text-center">The Great Divide // Backlash</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+            <div class="space-y-8">
+                <h3 class="text-2xl font-bold uppercase tracking-tighter text-red-500">Calls for Accountability</h3>
+                <div class="fragment-line py-4" onclick="copyText('Justice Ketanji Brown Jackson impeachment calls')">
+                    <p class="text-xs font-bold opacity-40 mb-1">JUSTICE KBJ</p>
+                    <p class="text-sm">"She needs to be removed from the bench... shame on her for that ovation"</p>
+                </div>
+                <div class="fragment-line py-4" onclick="copyText('Justice Jackson attending Grammys ICE OUT backlash')">
+                    <p class="text-xs font-bold opacity-40 mb-1">LEGAL_EAGLE</p>
+                    <p class="text-sm">"Attending an awards show while ICE continues operations? Hypocrisy."</p>
+                </div>
+            </div>
+
+            <div class="tweet-card p-8 space-y-6 rotate-[1deg]">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-full bg-blue-900 flex items-center justify-center text-[10px]">🎙️</div>
+                    <div>
+                        <p class="text-sm font-bold">Political Alert</p>
+                        <p class="text-[10px] opacity-50">@politicupdate · Feb 2</p>
+                    </div>
+                </div>
+                <p class="text-lg font-bold leading-tight">
+                    "Preachy Hollywood elites telling working Americans what to think while security protects them"
+                </p>
+                <div class="flex justify-between text-[11px] opacity-40 font-bold uppercase">
+                    <span>45K REPOSTS</span>
+                    <span>312K LIKES</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 10: FULL PIN COALITION -->
+    <section class="w-full max-w-5xl mb-64 space-y-16">
+        <h2 class="text-[10px] opacity-40 uppercase tracking-[1em] text-center">The Pin Coalition // Full List</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="space-y-6">
+                <h3 class="text-lg font-bold text-orange-600">Spoke Out</h3>
+                <div class="grid grid-cols-2 gap-2">
+                    <div class="fragment-line py-2 text-xs" onclick="copyText('Bad Bunny')">❯ BAD BUNNY</div>
+                    <div class="fragment-line py-2 text-xs" onclick="copyText('Billie Eilish')">❯ BILLIE EILISH</div>
+                    <div class="fragment-line py-2 text-xs" onclick="copyText('Kehlani')">❯ KEHLANI</div>
+                    <div class="fragment-line py-2 text-xs" onclick="copyText('Finneas')">❯ FINNEAS</div>
+                    <div class="fragment-line py-2 text-xs" onclick="copyText('Joni Mitchell')">❯ JONI MITCHELL</div>
+                    <div class="fragment-line py-2 text-xs" onclick="copyText('Jack Antonoff')">❯ JACK ANTONOFF</div>
+                    <div class="fragment-line py-2 text-xs" onclick="copyText('Olivia Rodrigo')">❯ OLIVIA RODRIGO</div>
+                    <div class="fragment-line py-2 text-xs" onclick="copyText('Lady Gaga')">❯ LADY GAGA</div>
+                </div>
+            </div>
+            <div class="space-y-6">
+                <h3 class="text-lg font-bold text-white">Wore The Pin</h3>
+                <div class="grid grid-cols-2 gap-2">
+                    <div class="fragment-line py-2 text-xs" onclick="copyText('Justin Bieber')">❯ JUSTIN BIEBER</div>
+                    <div class="fragment-line py-2 text-xs" onclick="copyText('Hailey Bieber')">❯ HAILEY BIEBER</div>
+                    <div class="fragment-line py-2 text-xs" onclick="copyText('Carole King')">❯ CAROLE KING</div>
+                    <div class="fragment-line py-2 text-xs" onclick="copyText('Brandi Carlile')">❯ BRANDI CARLILE</div>
+                    <div class="fragment-line py-2 text-xs" onclick="copyText('Jason Isbell')">❯ JASON ISBELL</div>
+                    <div class="fragment-line py-2 text-xs" onclick="copyText('Samara Joy')">❯ SAMARA JOY</div>
+                    <div class="fragment-line py-2 text-xs" onclick="copyText('Margo Price')">❯ MARGO PRICE</div>
+                    <div class="fragment-line py-2 text-xs" onclick="copyText('Bon Iver')">❯ BON IVER</div>
+                </div>
+            </div>
+            <div class="space-y-6">
+                <h3 class="text-lg font-bold opacity-50">Also Present</h3>
+                <div class="grid grid-cols-2 gap-2">
+                    <div class="fragment-line py-2 text-xs" onclick="copyText('Amy Allen')">❯ AMY ALLEN</div>
+                    <div class="fragment-line py-2 text-xs" onclick="copyText('Rhiannon Giddens')">❯ RHIANNON GIDDENS</div>
+                    <div class="fragment-line py-2 text-xs" onclick="copyText('PinkPantheress')">❯ PINKPANTHERESS</div>
+                    <div class="fragment-line py-2 text-xs" onclick="copyText('Helen J. Shen')">❯ HELEN J. SHEN</div>
+                    <div class="fragment-line py-2 text-xs" onclick="copyText('Helen J. Shen')">❯ VARIOUS OTHERS</div>
+                    <div class="fragment-line py-2 text-xs" onclick="copyText('Pin Coalition')">❯ +50+ UNKNOWN</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Marquee Footer -->
+    <footer class="fixed bottom-0 left-0 w-full bg-white text-black py-4 overflow-hidden border-t border-black z-[6000]">
+        <div class="ticker">
+            <span class="mx-10 font-bold text-[13px] tracking-tighter uppercase">ICE OUT</span>
+            <span class="mx-10 font-bold text-[13px] tracking-tighter uppercase">WE ARE HUMANS</span>
+            <span class="mx-10 font-bold text-[13px] tracking-tighter uppercase">STOLEN LAND</span>
+            <span class="mx-10 font-bold text-[13px] tracking-tighter uppercase">LOVE IS POWERFUL</span>
+            <span class="mx-10 font-bold text-[13px] tracking-tighter uppercase">GOD BLESS LAW ENFORCEMENT</span>
+            <span class="mx-10 font-bold text-[13px] tracking-tighter uppercase">ICED OUT 💎</span>
+            <span class="mx-10 font-bold text-[13px] tracking-tighter uppercase">FUERA ICE</span>
+            <span class="mx-10 font-bold text-[13px] tracking-tighter uppercase">ICE OUT</span>
+            <span class="mx-10 font-bold text-[13px] tracking-tighter uppercase">WE ARE HUMANS</span>
+            <span class="mx-10 font-bold text-[13px] tracking-tighter uppercase">STOLEN LAND</span>
+            <span class="mx-10 font-bold text-[13px] tracking-tighter uppercase">LOVE IS POWERFUL</span>
+            <span class="mx-10 font-bold text-[13px] tracking-tighter uppercase">GOD BLESS LAW ENFORCEMENT</span>
+        </div>
+    </footer>
+
+    <script>
+        function copyText(text) {
+            const el = document.createElement('textarea');
+            el.value = text;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            showToast('LOGGED TO CLIPBOARD');
+        }
+
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            toast.innerText = msg;
+            toast.style.display = 'block';
+            setTimeout(() => {
+                toast.style.display = 'none';
+            }, 1500);
+        }
+
+        // Particle trail
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.98) {
+                const particle = document.createElement('div');
+                particle.innerHTML = 'ICE';
+                particle.style.position = 'fixed';
+                particle.style.left = e.clientX + 'px';
+                particle.style.top = e.clientY + 'px';
+                particle.style.fontSize = '9px';
+                particle.style.color = 'var(--safety-orange)';
+                particle.style.pointerEvents = 'none';
+                particle.style.opacity = '0.5';
+                particle.style.zIndex = '7000';
+                document.body.appendChild(particle);
+                setTimeout(() => {
+                    particle.style.transform = 'translateY(-40px) rotate(20deg)';
+                    particle.style.opacity = '0';
+                    setTimeout(() => particle.remove(), 600);
+                }, 100);
+            }
+        });
+
+        // Intersection Observer for scroll reveal effect
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.tweet-card, section').forEach(el => {
+            el.style.opacity = '0.4';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
